@@ -18,3 +18,21 @@ class OrderResponse(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+class MenuCreate(BaseModel):
+    name: str = Field(..., min_length=1, examples=["Chicken Burger"])
+    description: str = Field("", examples=["Juicy grilled chicken burger"])
+    price: float = Field(..., gt=0, examples=[9.99])
+    category: str = Field("general", examples=["burgers"])
+
+
+class MenuResponse(BaseModel):
+    id: str
+    name: str
+    description: str
+    price: float
+    category: str
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
